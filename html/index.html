@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Exercício html</h1>
+
+    <nav>
+        <a href="exercicios/teste.html">00 - teste</a>
+        <a href="exercicios/form/form.html"> Form</a>
+        <a href="exercicios/imagens.html"> Imagens</a>
+        <a href="exercicios/form/video.html">Video</a>
+    </nav>
+
+    <section id="conteudo"></section>
+
+    <footer>Curso de web moderno</footer>
+
+    <script>
+        document.querySelectorAll('a').forEach(link => {
+            conteudo = document.getElementById('conteudo')
+            link.onclick = function (e) {
+                e.preventDefault() // Evita ser aberto em outra guia do navegador
+                
+                fetch(link.href) // aqui fazemos a requisição do link do site
+                .then(resp => resp.text()) // aqui retorna a resposta da requisição do site
+                .then(html => conteudo.innerHTML = html) // aqui enviamos para o site em uma 'tag'
+
+            }
+        })
+    </script>
+
+</body>
+</html>
