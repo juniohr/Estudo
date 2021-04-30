@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax com JQuery</title>
+    <script src="jquery-3.6.0.js"></script>
+    <style>
+       div > p{
+            background-color: blue;
+            width: 15%;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="cep">
+    <input type="button" value="Pesquisar" id="input">
+    <div id="conteudo"></div>
+</body>
+
+<script>
+    var cep = $('#cep')
+    
+    
+    $('#input').click(()=>{
+     var url =`https://viacep.com.br/ws/${cep.val()}/json/`
+
+     $.ajax({
+         url: url,
+         type: 'GET',
+         success: (response) =>{
+            $('#conteudo').html('')
+            $('#conteudo').append(`<p>${response.logradouro}`,`<p>${response.bairro}`,
+                `<p>${response.localidade}`,`<p>${response.uf}`)
+
+         }
+     })
+    })
+
+    
+
+</script>
+</html>
